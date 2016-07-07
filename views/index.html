@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+	<title>FireBasev2</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="imgs/smalllogo.png">
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
+	<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.indigo-pink.min.css">
+	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+	<link rel="stylesheet" type="text/css" href="/css/animate.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/site.css">
+	<meta name="viewport" content="width=device-width, initial-scale=0.9">
+
+	<link href="/css/themify-icons.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/css/flexslider.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/css/ytplayer.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400%7CRaleway:100,400,300,500,600,700%7COpen+Sans:400,500,600' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body class="container-fluid" ng-cloak>
+
+	<div ng-controller="NavBarController as vm" id="navParent">
+		<center>
+			<h1 style="color:white">
+				<a ui-sref="Home">FireBaseV2</a>
+			</h1>
+		</center>
+		<div class="well row">
+			<div class="col-sm-12">
+				<div class="nav">
+					<button ng-show="vm.status" class="btn" ng-click="vm.signOut()">Sign-Out</button>
+					<!-- <button type="button" name="button" ng-click="vm.getAuth()">getAuth</button> -->
+					<!-- <a class="well" href="user/{{vm.userInfo.uid}}"><button style="display: none;" ng-click="vm.stateChange()"></button>Profile as {{vm.userInfo.email}}</a> -->
+					<!-- <span class="well" ng-show="vm.savedUser" style="color:red;"><i>User Saved to FireBase!</i></span> -->
+					<button ng-show="!vm.status" class="btn btn-default" ng-click="vm.googleLogin()">Google Login</button>
+					<a ng-show="vm.status" class="btn btn-default" ui-sref="Profile({id: vm.userInfo.uid})"> Profile </a>
+					<h3 ng-show="vm.status"> Welcome {{vm.userInfo.email}} </h3>
+			</div>
+			<hr />
+
+			<!-- <div class="row">
+				<span ng-repeat="data in vm.data track by $index">
+								 <image ng-src="{{data.image}}" class="img-responsive" style="heigh: 30px; width: 20%"></image>
+								 {{data.username}}
+				</span>
+			</div> -->
+
+		</div>
+	</div>
+
+
+
+<ui-view></ui-view>
+
+
+
+<!-- <Ext Libs -->
+
+<script src="jquery/dist/jquery.min.js"></script>
+<script src="https://js.pusher.com/3.0/pusher.min.js"></script>
+<script src="angular/angular.min.js"></script>
+<script src="angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="angular-material/angular-material.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR4uInfVhGOVQPhgf8wkvxHpiEEYerVq8"></script>
+<script src="angular-animate/angular-animate.js"></script>
+<script src="angular-aria/angular-aria.js"></script>
+<script src="ng-file-upload/ng-file-upload.js"></script>
+<script src="angular-bootstrap/ui-bootstrap.js"></script>
+<script src="angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.0.3/firebase.js"></script>
+<!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
+
+
+
+
+<!-- Global Src -->
+<script src="/javascript/app.js"></script>
+<!-- Factories -->
+<script src="/javascript/services/UserFactory.js"></script>
+
+
+
+
+
+
+<!-- Controllers -->
+
+
+<script src="/javascript/controllers/NavBarController.js"></script>
+<script src="/javascript/controllers/ProfileController.js"></script>
+
+
+
+
+<script src="javascript/template/parallax.js"></script>
+<!-- <script src="javascript/template/scripts.js"></script> -->
+
+
+
+</body>
+
+</html>

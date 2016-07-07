@@ -1,0 +1,39 @@
+{
+  "name": "appname",
+  "version": "0.0.0",
+  "description": "OutCryGaming",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "postinstall": "bash ./post_install.sh"
+
+  },
+  "engines": {
+    "node": "0.12.7",
+    "npm": "2.11.3"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.12.4",
+    "bower": "^1.5.3",
+    "cloudinary": "^1.2.4",
+    "crypto": "0.0.3",
+    "ejs": "^2.3.4",
+    "express": "^4.12.4",
+    "express-jwt": "^3.1.0",
+    "express-mailer": "^0.3.0",
+    "express-session": "^1.11.3",
+    "jsonwebtoken": "^5.0.5",
+    "mongoose": "^4.1.2",
+    "multiparty": "^4.1.2",
+    "node-gcm": "^0.12.0",
+    "nodemailer": "^1.6.0",
+    "passport": "^0.3.0",
+    "passport-facebook": "^2.0.0",
+    "passport-google-oauth": "^0.2.0",
+    "passport-local": "^1.0.0",
+    "pusher": "^1.0.6",
+    "request": "^2.64.0",
+    "uuid": "^2.0.1"
+  }
+}
