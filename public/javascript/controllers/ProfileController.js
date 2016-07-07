@@ -17,6 +17,7 @@
           databaseURL: "https://webtest-fdd58.firebaseio.com",
           storageBucket: "webtest-fdd58.appspot.com",
         };
+      vm.emailStatus = false;
 
 
               // Get a reference to the database service
@@ -68,6 +69,17 @@
             vm.photoStatus = false;
           }
         }
+      }
+      vm.setEdit = function writeToEmail() {
+        firebase.database().ref('users/' + id).update({
+          email: vm.email
+        });
+        console.log("updating")
+        vm.emailStatus = false;
+        getAuth();
+      }
+      vm.showEmailEdit = function(){
+        vm.emailStatus = true;
       }
 
   }

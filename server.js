@@ -20,7 +20,7 @@ if (moduleAvailable('./env.js')) {
   var env = require('./env.js');
 }
 
-var db = process.env.MONGOLAB_URI || env.MONGOLAB_URI || "mongodb://localhost/OutCryGaming";
+// var db = process.env.MONGOLAB_URI || env.MONGOLAB_URI || "mongodb://localhost/OutCryGaming";
 // mongoose.connect(db, function(err) {
 //   if (err) return console.log("Error connecting to database: %s. Make sure you ran mongod :)", db);
 //
