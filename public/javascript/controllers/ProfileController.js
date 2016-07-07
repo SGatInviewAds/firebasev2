@@ -18,6 +18,7 @@
           storageBucket: "webtest-fdd58.appspot.com",
         };
       vm.emailStatus = false;
+      getAuth();
 
 
               // Get a reference to the database service
@@ -40,7 +41,6 @@
           }
         });
       }
-      getAuth();
 
       function getUserInfo(id, uuuid){
         if(id === uuuid){
@@ -70,17 +70,63 @@
           }
         }
       }
-      vm.setEdit = function writeToEmail() {
-        firebase.database().ref('users/' + id).update({
+      vm.setEdit = function() {
+        console.log("inside setEdit")
+        // var user = firebase.auth().currentUser;
+        //
+        // user.updateEmail(vm.email).then(function() {
+        //   console.log("Update successful");
+        // }, function(error) {
+        //   // An error happened.
+        // });
+        firebase.database().ref('users/' + id).set({
+          // username: name,
           email: vm.email
         });
-        console.log("updating")
+
         vm.emailStatus = false;
         getAuth();
       }
+
+
       vm.showEmailEdit = function(){
         vm.emailStatus = true;
       }
+
+            // vm.editUser = function(id){
+            //   console.log('inside edit');
+            //   vm.showEdit = true;
+            //   vm.id = vm.data[id].$id;
+            //   // makeEdit(id);
+            //   //get id then pass to next funciton
+            //
+            //
+            // }
+
+            // vm.makeEdit = function(){
+            //   console.log(vm.id, vm.editUserObj);
+            //     if(vm.editUserObj.image && vm.editUserObj.name){
+            //       console.log('inside real edit to fb')
+            //       var ref = database.ref('users/' + vm.id).set({
+            //         username: vm.editUserObj.name,
+            //         image: vm.editUserObj.image
+            //       });
+            //
+            //       vm.showEdit = false;
+            //       vm.editUserObj = {};
+            //       getUserData(config, database);
+            //     }
+            //   }
+            //
+            // vm.deleteUser = function(id){
+            //   vm.id = vm.data[id].$id;
+            //   var ref = database.ref('users/' + vm.id).set({
+            //     username: null,
+            //     image: null
+            //   });
+            //   // remove()
+            // }
+
 
   }
 })();

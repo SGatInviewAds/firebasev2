@@ -19,58 +19,23 @@
               // Get a reference to the database service
       var database = firebase.database();
       vm.user = {};
-      vm.savedUser = false;
       vm.editUserObj = {}
+      vm.savedUser = false;
       vm.showEdit = false;
-      vm.userInfo;
       vm.data;
+      vm.userInfo;
 
       getUserData(config, database);
+
       getAuth();
 
-      vm.sendUser = function(){
-        let UserUid = makeId();
-        console.log(UserUid);
-        console.log(vm.user)
-        writeUserData(UserUid, vm.user.name, vm.user.image, database);
+      function getUserData(config, database){ //sets vm.data to array of
+         var ref = database.ref().child("users");
+         vm.data = $firebaseArray(ref);
+        //  console.log(vm.data);
       }
 
-
-      vm.editUser = function(id){
-        console.log('inside edit');
-        vm.showEdit = true;
-        vm.id = vm.data[id].$id;
-        // makeEdit(id);
-        //get id then pass to next funciton
-
-
-      }
-
-      vm.makeEdit = function(){
-        console.log(vm.id, vm.editUserObj);
-          if(vm.editUserObj.image && vm.editUserObj.name){
-            console.log('inside real edit to fb')
-            var ref = database.ref('users/' + vm.id).set({
-              username: vm.editUserObj.name,
-              image: vm.editUserObj.image
-            });
-
-            vm.showEdit = false;
-            vm.editUserObj = {};
-            getUserData(config, database);
-          }
-        }
-
-      vm.deleteUser = function(id){
-        vm.id = vm.data[id].$id;
-        var ref = database.ref('users/' + vm.id).set({
-          username: null,
-          image: null
-        });
-        // remove()
-      }
-
-      function getAuth(){
+      function getAuth(){ //Finds out which user is logged in
         firebase.auth().onAuthStateChanged(function(user) {
           if (user) {
               // console.log('user signed in', user)
@@ -86,14 +51,16 @@
 
 
       vm.signOut = function(){
-      console.log('signing out')
+      // console.log('signing out')
        firebase.auth().signOut().then(function() {
-          getAuth();
-          // Sign-out successful.
-          vm.status = false;
-          $state.go('Home');
+            getAuth();
+            // Sign-out successful.
+            vm.status = false;
+            $state.go('Home');
           }, function(error) {
             getAuth();
+            getUserData();
+
             // An error happened.
           });
         }
@@ -125,18 +92,9 @@
         });
       }
 
-      function writeUserData(userId, name, image, database) {
-        // console.log("running fuction to export data to FB")
-        database.ref('users/' + userId).set({
-          username: name,
-          image: image
-        });
-        vm.savedUser = true;
-        vm.user = {};
-        getUserData(config, database);
-      }
 
-      function writeGoogleUserData(userObject, token){
+
+      function writeGoogleUserData(userObject, token){ // function for saving user to FireBase
         // console.log("this is token", token)
         // console.log("inside googledata funct", userObject)
         var anonPic = "http://responserates.org/media/accounts/profiles_pictures/anonymous-user_1.png";
@@ -162,26 +120,5 @@
         getUserData(config, database);
         // onSignIn(userObject);
       }
-
-      function getUserData(config, database){
-
-         var ref = database.ref().child("users");
-         vm.data = $firebaseArray(ref);
-        //  console.log(vm.data);
-
-      }
-
-      function makeId(){
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-        for( var i=0; i < 5; i++ )
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-        return text;
-      }
-
-
-
   }
 })();

@@ -3,7 +3,7 @@
 </center>
 <div class="well">
     <div ng-show="vm.nameStatus">
-        {{vm.userObject.name}} <button class="btn btn-default">Edit</button>
+        {{vm.userObject.name}} <button class="btn btn-default" ng-click="vm.setEdit()">Edit</button>
     </div>
     <div>
       {{vm.userObject.email}} <button class="btn btn-default" ng-click="vm.showEmailEdit()">Edit</button> <span ng-show="vm.emailStatus"><input class="form-control" placeholder="email" ng-model="vm.email"><button class="btn btn-defualt" ng-click="vm.setEdit()">Submit</button></span>
