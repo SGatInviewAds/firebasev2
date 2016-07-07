@@ -2,7 +2,7 @@
   <h1 style="color:white;">Profile</h1>
 </center>
 <div class="well">
-    <div>
+    <div ng-show="vm.nameStatus">
         {{vm.userObject.name}} <button class="btn btn-default">Edit</button>
     </div>
     <div>
@@ -11,7 +11,7 @@
     <div>
         {{vm.userObject.uid}} <button class="btn btn-default">Edit</button>
     </div>
-    <div>
+    <div ng-show="vm.photoStatus">
       <img ng-src="{{vm.userObject.photo}}" alt="" /> <button class="btn btn-default">Edit</button>
     </div>
 

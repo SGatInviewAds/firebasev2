@@ -57,6 +57,16 @@
               }
             });
           }
+          if(vm.userObject.name){
+            vm.nameStatus = true;
+          }else {
+            vm.nameStatus = false;
+          }
+          if(vm.userObject.photo){
+            vm.photoStatus = true;
+          }else {
+            vm.photoStatus = false;
+          }
         }
       }
 
